@@ -1,0 +1,1 @@
+Ini merupakan awal dari perjalanan project kami hck-101
