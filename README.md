@@ -1,6 +1,6 @@
 # KAMILA
 
-KAMILA adalah aplikasi web sederhana untuk membantu pengguna mencatat dan memantau kebiasaan kesehatan sehari-hari. Seluruh data disimpan secara lokal di browser, sehingga aplikasi dapat digunakan tanpa akun dan tanpa server.
+KAMILA merupakan aplikasi web sederhana untuk membantu pengguna mencatat dan memantau kebiasaan kesehatan sehari-hari. Seluruh data disimpan secara lokal di browser, sehingga aplikasi dapat digunakan tanpa akun dan tanpa server.
 
 ## Fitur
 
