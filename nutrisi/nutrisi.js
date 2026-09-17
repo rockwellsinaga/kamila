@@ -5,8 +5,16 @@ document.addEventListener("DOMContentLoaded", tampilkanData);
 // 1. CREATE
 
 function simpanCatatan() {
-  const jumlahGelas =
-    parseInt(document.getElementById("jumlahGelas").value) || 0;
+  const jumlahGelasInput = document.getElementById("jumlahGelas");
+  const jumlahGelasValue = jumlahGelasInput.value;
+
+  if (jumlahGelasValue === "") {
+    alert("Jumlah air minum harus diisi.");
+    jumlahGelasInput.focus();
+    return;
+  }
+
+  const jumlahGelas = parseInt(jumlahGelasValue);
   const adaKarbo = document.getElementById("karbo").checked;
   const adaProtein = document.getElementById("protein").checked;
   const adaBuah = document.getElementById("buah").checked;

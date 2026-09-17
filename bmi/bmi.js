@@ -14,10 +14,15 @@ function hitungBMI() {
 
   // Mengecek apakah ada input yang kosong
   if (usia === "" || jenisKelamin === "" || tinggi === "" || berat === "") {
-    // Menampilkan pesan
-    document.getElementById("hasil").innerHTML = "Semua data harus diisi!";
+    document.getElementById("hasil").innerHTML =
+      "<div class='alert alert-danger mb-0'>Semua data harus diisi!</div>";
 
-    // Menghentikan function
+    return;
+  }
+
+  if (Number(usia) <= 0 || Number(tinggi) <= 0 || Number(berat) <= 0) {
+    document.getElementById("hasil").innerHTML =
+      "<div class='alert alert-danger mb-0'>Usia, tinggi badan, dan berat badan harus lebih dari 0.</div>";
     return;
   }
 
@@ -43,6 +48,17 @@ function hitungBMI() {
   } else {
     kategori = "Obesitas";
   }
+
+  // Menyimpan hasil agar dapat ditampilkan kembali pada dashboard KAMILA.
+  const bmiHistory = JSON.parse(localStorage.getItem("bmiHistory")) || [];
+  bmiHistory.push({
+    usia: usia,
+    jenisKelamin: jenisKelamin,
+    bmi: bmi,
+    kategori: kategori,
+    createdAt: new Date().toISOString(),
+  });
+  localStorage.setItem("bmiHistory", JSON.stringify(bmiHistory));
 
   // menampilkan hasil
   document.getElementById("hasil").innerHTML =

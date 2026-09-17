@@ -1,65 +1,105 @@
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // ==========================================
-    // 1. HISTORI OLAHRAGA
-    // ==========================================
-    // Ambil data 'sportLogs' dari LocalStorage (data yang disimpan tracker.js)
-    const savedSportLogs = localStorage.getItem('sportLogs');
+function readStorageArray(key) {
+  try {
+    const savedData = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(savedData) ? savedData : [];
+  } catch (error) {
+    return [];
+  }
+}
 
-    if (savedSportLogs) {
-        // Ubah teks JSON menjadi array
-        const logs = JSON.parse(savedSportLogs);
-        
-        // Cek apakah ada isinya
-        if (logs.length > 0) {
-            // Ambil data paling terakhir diinput (elemen terakhir dalam array)
-            const lastLog = logs[logs.length - 1];
+function setHistoryCard(valueId, detailId, timeId, value, detail, time) {
+  document.getElementById(valueId).textContent = value || "Belum ada data";
+  document.getElementById(detailId).textContent = detail || "-";
+  document.getElementById(timeId).textContent = time || "-";
+}
 
-            // Masukkan ke dalam HTML
-            document.getElementById('lastSportName').innerText = lastLog.name;
-            document.getElementById('lastSportDetail').innerText = `${lastLog.category} - ${lastLog.duration} Menit`;
-            document.getElementById('lastSportTime').innerHTML = `<i class="fa-regular fa-clock"></i> Tanggal: ${lastLog.date}`;
-        }
-    }
+function formatTimestamp(timestamp) {
+  if (!timestamp) return "-";
 
-    // ==========================================
-    // 2. HISTORI BMI
-    // ==========================================
-    const savedBmi = localStorage.getItem('lastBmi');
-    if (savedBmi) {
-        const bmiData = JSON.parse(savedBmi);
-        document.getElementById('lastBmiValue').innerText = `${bmiData.nilai} (${bmiData.kategori})`;
-        document.getElementById('lastBmiDetail').innerText = `BB: ${bmiData.berat}kg | TB: ${bmiData.tinggi}cm`;
-        document.getElementById('lastBmiTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${bmiData.waktu}`;
-    }
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return timestamp;
 
-    // ==========================================
-    // 3. HISTORI NUTRISI
-    // ==========================================
-    const savedNutrisi = localStorage.getItem('lastNutrisi');
-    if (savedNutrisi) {
-        const nutrisiData = JSON.parse(savedNutrisi);
-        document.getElementById('lastNutrisiName').innerText = nutrisiData.makanan;
-        document.getElementById('lastNutrisiDetail').innerText = nutrisiData.detail;
-        document.getElementById('lastNutrisiTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${nutrisiData.waktu}`;
-    }
+  return date.toLocaleString("id-ID", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
 
-    // ==========================================
-    // 4. HISTORI NOTES
-    // ==========================================
-    const savedNotes = localStorage.getItem('lastNotes');
-    if (savedNotes) {
-        const notesData = JSON.parse(savedNotes);
-        document.getElementById('lastNotesTitle').innerText = notesData.judul;
-        
-        // Memotong teks jika terlalu panjang (maksimal 30 karakter agar kartu tetap rapi)
-        let isiPendek = notesData.isi;
-        if(isiPendek && isiPendek.length > 30) {
-            isiPendek = isiPendek.substring(0, 30) + '...';
-        }
-        
-        document.getElementById('lastNotesDetail').innerText = isiPendek;
-        document.getElementById('lastNotesTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${notesData.waktu}`;
-    }
+function renderBmiHistory() {
+  const bmiHistory = readStorageArray("bmiHistory");
+  const lastBmi = bmiHistory[bmiHistory.length - 1];
 
-});
+  if (!lastBmi) return;
+
+  setHistoryCard(
+    "lastBmiValue",
+    "lastBmiDetail",
+    "lastBmiTime",
+    `BMI ${lastBmi.bmi}`,
+    `${lastBmi.kategori} • ${lastBmi.jenisKelamin}, ${lastBmi.usia} tahun`,
+    formatTimestamp(lastBmi.createdAt),
+  );
+}
+
+function renderSportHistory() {
+  const sportLogs = readStorageArray("sportLogs");
+  const lastSport = sportLogs[sportLogs.length - 1];
+
+  if (!lastSport) return;
+
+  setHistoryCard(
+    "lastSportName",
+    "lastSportDetail",
+    "lastSportTime",
+    lastSport.name,
+    `${lastSport.category} • ${lastSport.duration} menit`,
+    lastSport.date,
+  );
+}
+
+function renderNutritionHistory() {
+  const nutritionLogs = readStorageArray("dataPolaMakan");
+  const lastNutrition = nutritionLogs[nutritionLogs.length - 1];
+
+  if (!lastNutrition) return;
+
+  const components = [];
+  if (lastNutrition.karbo) components.push("Karbo");
+  if (lastNutrition.protein) components.push("Protein");
+  if (lastNutrition.buah) components.push("Buah");
+  if (lastNutrition.lemakSehat) components.push("Lemak sehat");
+
+  setHistoryCard(
+    "lastNutrisiName",
+    "lastNutrisiDetail",
+    "lastNutrisiTime",
+    `${lastNutrition.jumlahGelas} gelas air minum`,
+    components.length ? components.join(", ") : "Belum ada isi piring dipilih",
+    lastNutrition.tanggal,
+  );
+}
+
+function renderNotesHistory() {
+  const notes = readStorageArray("notes");
+  const lastNote = notes[notes.length - 1];
+
+  if (!lastNote) return;
+
+  const preview = lastNote.content.length > 70
+    ? `${lastNote.content.slice(0, 70)}…`
+    : lastNote.content;
+
+  setHistoryCard(
+    "lastNotesTitle",
+    "lastNotesDetail",
+    "lastNotesTime",
+    lastNote.title,
+    `${lastNote.category} • ${preview}`,
+    lastNote.date,
+  );
+}
+
+renderBmiHistory();
+renderSportHistory();
+renderNutritionHistory();
+renderNotesHistory();

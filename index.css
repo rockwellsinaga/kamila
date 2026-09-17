@@ -1,0 +1,18 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-card {
+  border: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-card:hover {
+  box-shadow: var(--bs-box-shadow) !important;
+  transform: translateY(-4px);
+}
+
+.app-card .card-title {
+  font-weight: 700;
+  margin-bottom: 0;
+}
