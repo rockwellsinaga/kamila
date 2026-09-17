@@ -1,12 +1,162 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kamila</title>
-  </head>
-  <body>
-    <h1>Selamat datang di Kamila</h1>
-    <p>Kamu mau apa hari ini?</p>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAMILA - Health & Tracker Hub</title>
+    
+    <!-- Bootstrap CSS (Tema Minty dari Bootswatch) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/minty/bootstrap.min.css">
+    
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- CSS Kustom -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <!-- NAVBAR ATAS: Nama Website KAMILA -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">KAMILA</a>
+        </div>
+    </nav>
+
+    <!-- KONTAINER UTAMA -->
+    <div class="container py-5">
+        
+        <!-- Header Dashboard -->
+        <div class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Dashboard Kesehatan</h1>
+            <p class="text-muted">Pilih menu di bawah untuk mengelola kesehatan Anda</p>
+        </div>
+
+        <!-- BARIS 1: 4 FITUR UTAMA -->
+        <div class="row w-100 text-center justify-content-center mb-5">
+            
+            <!-- Menu 1: Kalkulator BMI -->
+            <div class="col-6 col-md-3 mb-4">
+                <a href="bmi/bmi.html" class="text-decoration-none">
+                    <div class="card app-card shadow-sm h-100">
+                        <div class="card-body text-dark py-4">
+                            <i class="fa-solid fa-scale-balanced fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Kalkulator BMI</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Menu 2: Tracking Olahraga -->
+            <div class="col-6 col-md-3 mb-4">
+                <a href="tracking/tracker.html" class="text-decoration-none">
+                    <div class="card app-card shadow-sm h-100">
+                        <div class="card-body text-dark py-4">
+                            <i class="fa-solid fa-person-running fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Olahraga</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Menu 3: Nutrisi -->
+            <div class="col-6 col-md-3 mb-4">
+                <a href="nutrisi/nutrisi.html" class="text-decoration-none">
+                    <div class="card app-card shadow-sm h-100">
+                        <div class="card-body text-dark py-4">
+                            <i class="fa-solid fa-apple-whole fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Nutrisi</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Menu 4: Notes -->
+            <div class="col-6 col-md-3 mb-4">
+                <a href="notes/notes.html" class="text-decoration-none">
+                    <div class="card app-card shadow-sm h-100">
+                        <div class="card-body text-dark py-4">
+                            <i class="fa-regular fa-note-sticky fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Notes</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- GARIS PEMISAH -->
+        <hr class="text-muted mb-5">
+
+        <!-- BARIS 2: RIWAYAT PENCATATAN TERAKHIR -->
+        <div class="row w-100 justify-content-center">
+            <div class="col-12 text-center mb-4">
+                <h3 class="text-primary fw-bold">Riwayat Pencatatan Terakhir</h3>
+                <p class="text-muted">Aktivitas terakhir yang Anda simpan di KAMILA</p>
+            </div>
+
+            <!-- Histori BMI -->
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="card border-primary shadow-sm h-100">
+                    <div class="card-header bg-primary text-white py-2">
+                        <i class="fa-solid fa-scale-balanced me-2"></i> BMI
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title fw-bold" id="lastBmiValue">Belum ada data</h6>
+                        <p class="card-text text-muted small mb-0" id="lastBmiDetail">-</p>
+                        <p class="card-text text-muted small" id="lastBmiTime">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histori Olahraga -->
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="card border-success shadow-sm h-100">
+                    <div class="card-header bg-success text-white py-2">
+                        <i class="fa-solid fa-person-running me-2"></i> Olahraga
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title fw-bold" id="lastSportName">Belum ada data</h6>
+                        <p class="card-text text-muted small mb-0" id="lastSportDetail">-</p>
+                        <p class="card-text text-muted small" id="lastSportTime">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histori Nutrisi -->
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="card border-danger shadow-sm h-100">
+                    <div class="card-header bg-danger text-white py-2">
+                        <i class="fa-solid fa-apple-whole me-2"></i> Nutrisi
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title fw-bold" id="lastNutrisiName">Belum ada data</h6>
+                        <p class="card-text text-muted small mb-0" id="lastNutrisiDetail">-</p>
+                        <p class="card-text text-muted small" id="lastNutrisiTime">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histori Notes -->
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="card border-warning shadow-sm h-100">
+                    <div class="card-header bg-warning text-white py-2">
+                        <i class="fa-regular fa-note-sticky me-2"></i> Notes
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title fw-bold" id="lastNotesTitle">Belum ada data</h6>
+                        <p class="card-text text-muted small mb-0" id="lastNotesDetail">-</p>
+                        <p class="card-text text-muted small" id="lastNotesTime">-</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+</body>
 </html>

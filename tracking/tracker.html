@@ -1,164 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tracker Olahraga Harian</title>
     <!-- Menghubungkan CSS Bootstrap 5 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/minty/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/minty/bootstrap.min.css" rel="stylesheet">
     <!-- Menghubungkan CSS kustom tambahan -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="bg-light">
+    <link rel="stylesheet" href="tracker.css">
+</head>
+<body class="bg-light">
     <!-- Container diperlebar agar cukup untuk 2 kolom -->
-    <div class="container py-5" style="max-width: 1000px">
-      <!-- Header Halaman -->
-      <div class="text-center mb-4">
-        <h2 class="text-primary fw-bold mb-1">🏃‍♂️ Tracker Olahraga</h2>
-        <p class="text-muted">Capai target sehatmu setiap hari!</p>
-      </div>
-
-      <!-- Membuat Baris (Row) untuk sistem Grid Bootstrap -->
-      <div class="row g-4">
-        <!-- Kolom Kiri: Form Input -->
-        <div class="col-lg-6">
-          <div class="card shadow-sm border-0 h-100">
-            <div class="card-body p-4">
-              <h4 class="card-title border-bottom pb-2 mb-3">
-                Input Aktivitas
-              </h4>
-              <form id="sportForm">
-                <div class="mb-3">
-                  <label for="date" class="form-label fw-semibold"
-                    >Tanggal:</label
-                  >
-                  <input type="date" id="date" class="form-control" required />
-                </div>
-
-                <div class="mb-3">
-                  <label for="category" class="form-label fw-semibold"
-                    >Jenis Olahraga:</label
-                  >
-                  <select id="category" class="form-select" required>
-                    <option value="">-- Pilih Jenis --</option>
-                    <option value="Kardio">
-                      Kardio (Lari, Sepeda, Renang)
-                    </option>
-                    <option value="Kekuatan">
-                      Latihan Kekuatan (Angkat Beban)
-                    </option>
-                    <option value="Fleksibilitas">
-                      Fleksibilitas (Yoga, Stretching)
-                    </option>
-                    <option value="Olahraga Permainan">
-                      Olahraga Permainan (Basket, Futsal)
-                    </option>
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label for="name" class="form-label fw-semibold"
-                    >Nama Spesifik Olahraga:</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    placeholder="Contoh: Lari Pagi"
-                    required
-                  />
-                </div>
-
-                <div class="mb-3">
-                  <label for="duration" class="form-label fw-semibold"
-                    >Durasi (Menit):</label
-                  >
-                  <input
-                    type="number"
-                    id="duration"
-                    class="form-control"
-                    min="1"
-                    placeholder="15"
-                    required
-                  />
-                </div>
-
-                <div class="mb-4">
-                  <label for="reps" class="form-label fw-semibold"
-                    >Repetisi/Set (Opsional):</label
-                  >
-                  <input
-                    type="number"
-                    id="reps"
-                    class="form-control"
-                    min="1"
-                    placeholder="10"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  class="btn btn-success w-100 fw-bold py-2"
-                >
-                  Catat Aktivitas
-                </button>
-              </form>
-            </div>
-          </div>
+    <div class="container py-5" style="max-width: 1000px;">
+        
+        <!-- Header Halaman -->
+        <div class="text-center mb-4">
+            <h2 class="text-primary fw-bold mb-1">🏃‍♂️ Tracker Olahraga</h2>
+            <p class="text-muted">Capai target sehatmu setiap hari!</p>
         </div>
 
-        <!-- Kolom Kanan: Histori/Catatan -->
-        <div class="col-lg-6">
-          <div class="card shadow-sm border-0 h-100">
-            <div class="card-body p-4 d-flex flex-column">
-              <h4 class="card-title border-bottom pb-2 mb-3">
-                Catatan Hari Ini
-              </h4>
+        <!-- Membuat Baris (Row) untuk sistem Grid Bootstrap -->
+        <div class="row g-4">
+            
+            <!-- Kolom Kiri: Form Input -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4">
+                        <h4 class="card-title border-bottom pb-2 mb-3">Input Aktivitas</h4>
+                        <form id="sportForm">
+                            <div class="mb-3">
+                                <label for="date" class="form-label fw-semibold">Tanggal:</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="category" class="form-label fw-semibold">Jenis Olahraga:</label>
+                                <select id="category" class="form-select" required>
+                                    <option value="">-- Pilih Jenis --</option>
+                                    <option value="Kardio">Kardio (Lari, Sepeda, Renang)</option>
+                                    <option value="Kekuatan">Latihan Kekuatan (Angkat Beban)</option>
+                                    <option value="Fleksibilitas">Fleksibilitas (Yoga, Stretching)</option>
+                                    <option value="Olahraga Permainan">Olahraga Permainan (Basket, Futsal)</option>
+                                </select>
+                            </div>
 
-              <!-- Area daftar aktivitas yang bisa di-scroll jika kepanjangan -->
-              <div
-                class="flex-grow-1"
-                style="max-height: 400px; overflow-y: auto"
-              >
-                <ul id="sportList" class="list-group mb-4">
-                  <!-- Data akan disuntikkan oleh JS di sini -->
-                </ul>
-              </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-semibold">Nama Spesifik Olahraga:</label>
+                                <input type="text" id="name" class="form-control" placeholder="Contoh: Lari Pagi" required>
+                            </div>
 
-              <div class="mt-auto">
-                <!-- Kotak Ringkasan -->
-                <div class="alert alert-warning" role="alert">
-                  <p class="mb-1 fw-semibold">
-                    Total Durasi Hari Ini:
-                    <span id="totalDuration" class="fw-bold">0</span> menit
-                  </p>
-                  <p class="mb-0 fw-semibold">
-                    Target WHO (30 menit):
-                    <span id="targetStatus">Belum Tercapai ❌</span>
-                  </p>
+                            <div class="mb-3">
+                                <label for="duration" class="form-label fw-semibold">Durasi (Menit):</label>
+                                <input type="number" id="duration" class="form-control" min="1" placeholder="15" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="reps" class="form-label fw-semibold">Repetisi/Set (Opsional):</label>
+                                <input type="number" id="reps" class="form-control" min="1" placeholder="10">
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 fw-bold py-2">Catat Aktivitas</button>
+                        </form>
+                    </div>
                 </div>
-
-                <!-- Tombol Aksi Tambahan -->
-                <div class="d-grid gap-2">
-                  <button id="checkStatusBtn" class="btn btn-primary">
-                    Cek Status Target
-                  </button>
-                  <button id="clearDataBtn" class="btn btn-outline-danger">
-                    Hapus Semua Data
-                  </button>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Row -->
+
+            <!-- Kolom Kanan: Histori/Catatan -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title border-bottom pb-2 mb-3">Catatan Hari Ini</h4>
+                        
+                        <!-- Area daftar aktivitas yang bisa di-scroll jika kepanjangan -->
+                        <div class="flex-grow-1" style="max-height: 400px; overflow-y: auto;">
+                            <ul id="sportList" class="list-group mb-4">
+                                <!-- Data akan disuntikkan oleh JS di sini -->
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <!-- Kotak Ringkasan -->
+                            <div class="alert alert-warning" role="alert">
+                                <p class="mb-1 fw-semibold">Total Durasi Hari Ini: <span id="totalDuration" class="fw-bold">0</span> menit</p>
+                                <p class="mb-0 fw-semibold">Target WHO (30 menit): <span id="targetStatus">Belum Tercapai ❌</span></p>
+                            </div>
+                            
+                            <!-- Tombol Aksi Tambahan -->
+                            <div class="d-grid gap-2">
+                                <button id="checkStatusBtn" class="btn btn-primary">Cek Status Target</button>
+                                <button id="clearDataBtn" class="btn btn-outline-danger">Hapus Semua Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End Row -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <script src="tracker.js"></script>
+</body>
 </html>
