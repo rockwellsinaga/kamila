@@ -15,7 +15,7 @@ function simpanCatatan() {
   const adaLemakSehat = document.getElementById("lemakSehat").checked;
   const editIndex = parseInt(document.getElementById("editIndex").value);
 
-  // Buat objek data baru
+  
   const catatanBaru = {
     tanggal: new Date().toLocaleDateString("id-ID"),
     jumlahGelas: jumlahGelas,
