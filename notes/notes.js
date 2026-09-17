@@ -1,6 +1,15 @@
 // Array utama untuk menyimpan semua object note.
 // Jika localStorage belum memiliki data, nilainya akan menjadi array kosong [].
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
+function loadNotes() {
+  try {
+    const savedNotes = JSON.parse(localStorage.getItem("notes"));
+    return Array.isArray(savedNotes) ? savedNotes : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let notes = loadNotes();
 
 // Menyimpan id note yang sedang diedit dan kategori filter yang aktif.
 let editingId = null;

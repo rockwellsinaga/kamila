@@ -12,7 +12,14 @@ const MIN_DURATION_RECOMMENDED = 30;
 
 function loadData() {
     const savedData = localStorage.getItem('sportLogs');
-    if (savedData) logs = JSON.parse(savedData);
+    if (!savedData) return;
+
+    try {
+        const parsedData = JSON.parse(savedData);
+        logs = Array.isArray(parsedData) ? parsedData : [];
+    } catch (error) {
+        logs = [];
+    }
 }
 
 function saveData() {

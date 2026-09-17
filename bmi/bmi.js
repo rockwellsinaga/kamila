@@ -50,7 +50,14 @@ function hitungBMI() {
   }
 
   // Menyimpan hasil agar dapat ditampilkan kembali pada dashboard KAMILA.
-  const bmiHistory = JSON.parse(localStorage.getItem("bmiHistory")) || [];
+  let bmiHistory = [];
+
+  try {
+    const savedBmiHistory = JSON.parse(localStorage.getItem("bmiHistory"));
+    bmiHistory = Array.isArray(savedBmiHistory) ? savedBmiHistory : [];
+  } catch (error) {
+    bmiHistory = [];
+  }
   bmiHistory.push({
     usia: usia,
     jenisKelamin: jenisKelamin,

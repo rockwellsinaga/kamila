@@ -1,4 +1,13 @@
-let daftarCatatan = JSON.parse(localStorage.getItem("dataPolaMakan")) || [];
+function loadNutritionLogs() {
+  try {
+    const savedData = JSON.parse(localStorage.getItem("dataPolaMakan"));
+    return Array.isArray(savedData) ? savedData : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let daftarCatatan = loadNutritionLogs();
 
 document.addEventListener("DOMContentLoaded", tampilkanData);
 
