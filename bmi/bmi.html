@@ -1,97 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator BMI | Kamila</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap Minty, digunakan juga oleh fitur Tracker -->
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/minty/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="bmi.css" />
+  </head>
 
-<body>
-    <div class="container mt-5">
-        <div class="card mx-auto" style="max-width: 500px;">
-            <div class="card-body">
-                <h2 class="text-center">
-                    BMI Calculator
-                </h2>
+  <body class="bg-light">
+    <main class="container py-5" style="max-width: 1000px">
+      <header class="text-center mb-4">
+        <h2 class="text-primary fw-bold mb-1">Kalkulator BMI</h2>
+        <p class="text-muted mb-0">Kenali indeks massa tubuhmu dengan mudah.</p>
+      </header>
 
-                <hr>
+      <div class="card shadow-sm border-0 mx-auto" style="max-width: 560px">
+        <div class="card-body p-4">
+          <h4 class="card-title border-bottom pb-2 mb-3">Data diri</h4>
 
-                <!-- Input usia -->
-                <label class="form-label">
-                    Usia
-                </label>
+          <!-- Input usia -->
+          <label class="form-label"> Usia </label>
 
-                <input
-                    type="number"
-                    id="usia"
-                    class="form-control mb-3"
-                    placeholder="Masukkan usia">
+          <input
+            type="number"
+            id="usia"
+            class="form-control mb-3"
+            placeholder="Masukkan usia"
+          />
 
-                <!-- Jenis kelamin -->
-                <label class="form-label">
-                    Jenis Kelamin
-                </label>
+          <!-- Jenis kelamin -->
+          <label class="form-label"> Jenis Kelamin </label>
 
-                <select
-                    id="jenisKelamin"
-                    class="form-select mb-3">
+          <select id="jenisKelamin" class="form-select mb-3">
+            <option value="">Pilih jenis kelamin</option>
 
-                    <option value="">
-                        Pilih jenis kelamin
-                    </option>
+            <option value="Laki-laki">Laki-laki</option>
 
-                    <option value="Laki-laki">
-                        Laki-laki
-                    </option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
 
-                    <option value="Perempuan">
-                        Perempuan
-                    </option>
+          <!-- Tinggi badan -->
+          <label class="form-label"> Tinggi Badan (cm) </label>
 
-                </select>
+          <input
+            type="number"
+            id="tinggi"
+            class="form-control mb-3"
+            placeholder="Contoh: 170"
+          />
 
-                <!-- Tinggi badan -->
-                <label class="form-label">
-                    Tinggi Badan (cm)
-                </label>
+          <!-- Berat badan -->
+          <label class="form-label"> Berat Badan (kg) </label>
 
-                <input
-                    type="number"
-                    id="tinggi"
-                    class="form-control mb-3"
-                    placeholder="Contoh: 170">
+          <input
+            type="number"
+            id="berat"
+            class="form-control mb-3"
+            placeholder="Contoh: 60"
+          />
 
-                <!-- Berat badan -->
-                <label class="form-label">
-                    Berat Badan (kg)
-                </label>
+          <!-- Tombol -->
+          <button
+            onclick="hitungBMI()"
+            class="btn btn-success w-100 fw-bold py-2"
+          >
+            Hitung BMI
+          </button>
 
-                <input
-                    type="number"
-                    id="berat"
-                    class="form-control mb-3"
-                    placeholder="Contoh: 60">
-
-                <!-- Tombol -->
-                <button
-                    onclick="hitungBMI()"
-                    class="btn btn-primary w-100">
-                    Hitung BMI
-                </button>
-
-                <!-- Tempat hasil -->
-                <div id="hasil" class="mt-4"></div>
-            </div>
+          <!-- Tempat hasil -->
+          <div id="hasil" class="mt-4"></div>
         </div>
-    </div>
+      </div>
+    </main>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
-</body>
+    <script src="bmi.js"></script>
+  </body>
 </html>

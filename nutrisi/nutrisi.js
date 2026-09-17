@@ -1,28 +1,25 @@
-
 let daftarCatatan = JSON.parse(localStorage.getItem("dataPolaMakan")) || [];
-
 
 document.addEventListener("DOMContentLoaded", tampilkanData);
 
-
-// 1. CREATE 
+// 1. CREATE
 
 function simpanCatatan() {
-  const jumlahGelas = parseInt(document.getElementById("jumlahGelas").value) || 0;
+  const jumlahGelas =
+    parseInt(document.getElementById("jumlahGelas").value) || 0;
   const adaKarbo = document.getElementById("karbo").checked;
   const adaProtein = document.getElementById("protein").checked;
   const adaBuah = document.getElementById("buah").checked;
   const adaLemakSehat = document.getElementById("lemakSehat").checked;
   const editIndex = parseInt(document.getElementById("editIndex").value);
 
-  
   const catatanBaru = {
     tanggal: new Date().toLocaleDateString("id-ID"),
     jumlahGelas: jumlahGelas,
     karbo: adaKarbo,
     protein: adaProtein,
     buah: adaBuah,
-    lemakSehat: adaLemakSehat
+    lemakSehat: adaLemakSehat,
   };
 
   if (editIndex === -1) {
@@ -43,8 +40,7 @@ function simpanCatatan() {
   tampilkanData();
 }
 
-
-// 2. READ 
+// 2. READ
 
 function tampilkanData() {
   const tabelBody = document.getElementById("tabelRiwayat");
@@ -62,7 +58,8 @@ function tampilkanData() {
     if (item.buah) komponenPiring.push("Buah");
     if (item.lemakSehat) komponenPiring.push("Lemak Sehat");
 
-    const nutrisiLengkap = item.karbo && item.protein && item.buah && item.lemakSehat;
+    const nutrisiLengkap =
+      item.karbo && item.protein && item.buah && item.lemakSehat;
     const statusNutrisi = nutrisiLengkap ? "✅ Seimbang" : "❌ Belum Seimbang";
 
     tabelBody.innerHTML += `
@@ -91,14 +88,13 @@ function persiapkanEdit(index) {
   document.getElementById("protein").checked = item.protein;
   document.getElementById("buah").checked = item.buah;
   document.getElementById("lemakSehat").checked = item.lemakSehat;
-  
+
   document.getElementById("editIndex").value = index;
 
   document.getElementById("formTitle").innerText = "Edit Catatan Harian";
   document.getElementById("btnSimpan").innerText = "Perbarui Catatan";
   document.getElementById("btnBatal").hidden = false;
 }
-
 
 // 4. DELETE (Menghapus Data)
 
@@ -109,7 +105,6 @@ function hapusCatatan(index) {
     tampilkanData();
   }
 }
-
 
 // LOGIKA ALERT & RESET FORM
 
@@ -126,7 +121,8 @@ function tampilkanAlertAnalisis(data) {
   }
 
   pesanAlert += `--- STATUS ISI PIRINGKU ---\n`;
-  const nutrisiLengkap = data.karbo && data.protein && data.buah && data.lemakSehat;
+  const nutrisiLengkap =
+    data.karbo && data.protein && data.buah && data.lemakSehat;
 
   if (nutrisiLengkap) {
     pesanAlert += `✅ Makan Anda sudah seimbang! (Karbo, Protein, Buah, & Lemak Sehat lengkap), pasti Dr. Rizki senang😉`;
@@ -149,7 +145,7 @@ function resetForm() {
   document.getElementById("protein").checked = false;
   document.getElementById("buah").checked = false;
   document.getElementById("lemakSehat").checked = false;
-  
+
   document.getElementById("editIndex").value = "-1";
   document.getElementById("formTitle").innerText = "Tambah Catatan Harian";
   document.getElementById("btnSimpan").innerText = "Simpan Catatan";

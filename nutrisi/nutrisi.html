@@ -1,69 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Pantau Makan & Minum </title>
-  <!-- Menghubungkan file CSS Eksternal -->
-  <link rel="stylesheet" href="nutrisi.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Pantau Makan & Minum</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/minty/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="nutrisi.css" />
+  </head>
+  <body class="bg-light">
+    <main class="container py-5" style="max-width: 1000px">
+      <header class="text-center mb-4">
+        <h2 class="text-primary fw-bold mb-1">Pantau Makan & Minum</h2>
+        <p class="text-muted mb-0">
+          Catat asupan harianmu untuk pola hidup yang lebih sehat.
+        </p>
+      </header>
 
-  <h2>Pantau Makan & Minum Harian</h2>
+      <!-- 1. CREATE -->
+      <section class="form-container card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h4 id="formTitle" class="card-title border-bottom pb-2 mb-3">
+            Tambah Catatan Harian
+          </h4>
+          <input type="hidden" id="editIndex" value="-1" />
 
-         <!-- 1. CREAT -->
-  <div class="form-container">
-    <h3 id="formTitle">Tambah Catatan Harian</h3>
-    <input type="hidden" id="editIndex" value="-1">
+          <div class="input-group">
+            <label for="jumlahGelas">Jumlah Air Minum (Gelas):</label>
+            <input
+              class="form-control"
+              type="number"
+              id="jumlahGelas"
+              placeholder="Masukkan jumlah gelas"
+              min="0"
+            />
+          </div>
 
-    <div class="input-group">
-      <label for="jumlahGelas">Jumlah Air Minum (Gelas):</label>
-      <input type="number" id="jumlahGelas" placeholder="Masukkan jumlah gelas" min="0">
-    </div>
+          <div class="input-group">
+            <h4>Komponen Isi Piringku:</h4>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input class="form-check-input" type="checkbox" id="karbo" />
+                <label for="karbo">Karbohidrat</label>
+              </div>
+              <div class="checkbox-item">
+                <input class="form-check-input" type="checkbox" id="protein" />
+                <label for="protein">Protein</label>
+              </div>
+              <div class="checkbox-item">
+                <input class="form-check-input" type="checkbox" id="buah" />
+                <label for="buah">Buah</label>
+              </div>
+              <div class="checkbox-item">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="lemakSehat"
+                />
+                <label for="lemakSehat">Lemak Sehat</label>
+              </div>
+            </div>
+          </div>
 
-    <div class="input-group">
-      <h4>Komponen Isi Piringku:</h4>
-      <div class="checkbox-group">
-        <div class="checkbox-item">
-          <input type="checkbox" id="karbo"> <label for="karbo">Karbohidrat</label>
+          <div class="form-actions">
+            <button
+              id="btnSimpan"
+              class="btn btn-success fw-bold"
+              onclick="simpanCatatan()"
+            >
+              Simpan Catatan
+            </button>
+            <button
+              id="btnBatal"
+              class="btn btn-outline-danger"
+              onclick="batalEdit()"
+              hidden
+            >
+              Batal Edit
+            </button>
+          </div>
         </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="protein"> <label for="protein">Protein</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="buah"> <label for="buah">Buah</label>
-        </div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="lemakSehat"> <label for="lemakSehat">Lemak Sehat</label>
-        </div>
-      </div>
-    </div>
+      </section>
 
-    <button id="btnSimpan" onclick="simpanCatatan()">Simpan Catatan</button>
-    <button id="btnBatal" onclick="batalEdit()" hidden>Batal Edit</button>
-  </div>
-
-  <!-- DELETE -->
-  <h3>Riwayat Catatan Harian</h3>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal</th>
-          <th>Air Minum</th>
-          <th>Isi Piringku</th>
-          <th>Status Nutrisi</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody id="tabelRiwayat">
-        
-      </tbody>
-    </table>
-  </div>
-
-  
-  <script src="nutrisi.js"></script>
-</body>
+      <!-- DELETE -->
+      <section class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h4 class="card-title border-bottom pb-2 mb-3">
+            Riwayat Catatan Harian
+          </h4>
+          <div class="table-container">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Tanggal</th>
+                  <th>Air Minum</th>
+                  <th>Isi Piringku</th>
+                  <th>Status Nutrisi</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabelRiwayat"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="nutrisi.js"></script>
+  </body>
 </html>

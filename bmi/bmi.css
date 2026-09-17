@@ -1,8 +1,11 @@
-
 body {
-    background-color: #f2f2f2;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card {
-    border-radius: 15px;
+#hasil .alert {
+  margin-bottom: 0;
+}
+
+#hasil .alert p:last-child {
+  margin-bottom: 0;
 }
