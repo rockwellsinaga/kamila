@@ -51,12 +51,12 @@ Tidak ada environment variable, database, ataupun backend yang perlu dikonfigura
 
 Data disimpan di `localStorage` browser dengan key berikut:
 
-| Fitur | Key |
-| --- | --- |
-| BMI | `bmiHistory` |
-| Tracker Olahraga | `sportLogs` |
-| Nutrisi | `dataPolaMakan` |
-| Notes | `notes` |
+| Fitur            | Key             |
+| ---------------- | --------------- |
+| BMI              | `bmiHistory`    |
+| Tracker Olahraga | `sportLogs`     |
+| Nutrisi          | `dataPolaMakan` |
+| Notes            | `notes`         |
 
 Data hanya tersedia pada browser dan origin yang sama. Menghapus data situs/browser akan menghapus riwayat KAMILA pada perangkat tersebut.
 

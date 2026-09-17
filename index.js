@@ -85,9 +85,10 @@ function renderNotesHistory() {
 
   if (!lastNote) return;
 
-  const preview = lastNote.content.length > 70
-    ? `${lastNote.content.slice(0, 70)}…`
-    : lastNote.content;
+  const preview =
+    lastNote.content.length > 70
+      ? `${lastNote.content.slice(0, 70)}…`
+      : lastNote.content;
 
   setHistoryCard(
     "lastNotesTitle",
